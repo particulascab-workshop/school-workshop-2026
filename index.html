@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School & Workshop on Advanced Aspects of QFT — Bariloche 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables ───────────────────────────────────────────────────── */
+    :root {
+      --ink:     #0d1117;
+      --paper:   #f8f5ef;
+      --cream:   #ede9e0;
+      --gold:    #b8860b;
+      --gold-lt: #d4a017;
+      --rust:    #8b3a3a;
+      --blue:    #1a3a5c;
+      --muted:   #5a5650;
+      --rule:    rgba(13,17,23,0.15);
+      --shadow:  0 2px 24px rgba(13,17,23,0.08);
+    }
+
+    /* ── Reset & Base ────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 17px; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Typography ──────────────────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: var(--gold-lt); text-decoration: underline; }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Navigation ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(248,245,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 52px;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); text-decoration: none; }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 3rem 4rem;
+    }
+
+    /* Subtle dot-grid background */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(13,17,23,0.07) 1px, transparent 0);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    /* Large decorative equation watermark */
+    #hero::after {
+      content: 'β(g) = μ∂g/∂μ';
+      position: absolute;
+      bottom: 5%;
+      right: -1%;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-style: italic;
+      color: rgba(184,134,11,0.07);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1.hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 0.3em;
+      max-width: 820px;
+    }
+
+    h1.hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-meta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-meta-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .hero-rule {
+      width: 100%;
+      max-width: 600px;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-structure {
+      display: flex;
+      gap: 1px;
+      max-width: 540px;
+    }
+
+    .phase-block {
+      flex: 1;
+      padding: 1.1rem 1.4rem;
+      border: 1px solid var(--rule);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .phase-block:hover { border-color: var(--gold); background: rgba(184,134,11,0.03); }
+
+    .phase-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .phase-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      display: block;
+    }
+
+    .phase-dates {
+      font-size: 0.88rem;
+      color: var(--muted);
+      display: block;
+    }
+
+    /* ── Section base ────────────────────────────────────────────────── */
+    section {
+      padding: 5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section + section { border-top: 1px solid var(--rule); }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+
+    h2.section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+    }
+
+    /* ── About ───────────────────────────────────────────────────────── */
+    .about-text {
+      max-width: 780px;
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    .about-text p + p { margin-top: 1.2em; }
+
+    .about-highlight {
+      border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--blue);
+      line-height: 1.5;
+    }
+
+    /* ── Speakers ────────────────────────────────────────────────────── */
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--rule);
+    }
+
+    .speaker-card {
+      padding: 1.8rem 1.6rem;
+      border: 1px solid transparent;
+      background: white;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      position: relative;
+      cursor: default;
+    }
+
+    .speaker-card:hover {
+      border-color: var(--gold);
+      background: var(--paper);
+      z-index: 1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184,134,11,0.1);
+    }
+
+    .speaker-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 0.8rem;
+    }
+
+    .speaker-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .speaker-affil {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .speaker-type {
+      margin-top: 0.8rem;
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2em 0.6em;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+    }
+
+    .speaker-tba {
+      font-style: italic;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    /* ── Program ─────────────────────────────────────────────────────── */
+    .program-placeholder {
+      padding: 4rem 2rem;
+      border: 1px dashed var(--rule);
+      text-align: center;
+    }
+
+    .program-placeholder .big-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .program-structure {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .prog-phase {
+      padding: 2rem;
+      border: 1px solid var(--rule);
+      background: white;
+    }
+
+    .prog-phase-head {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .prog-phase-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .prog-phase-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ── Registration ────────────────────────────────────────────────── */
+    .reg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .reg-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .fee-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .fee-table th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 0.7rem 1rem;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .fee-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .fee-table tr:last-child td { border-bottom: none; }
+    .fee-table tr:nth-child(even) td { background: rgba(13,17,23,0.03); }
+
+    .fee-tba { color: var(--muted); font-style: italic; }
+
+    .reg-deadlines { margin-top: 1.5rem; }
+
+    .deadline-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.93rem;
+    }
+
+    .deadline-label { color: var(--muted); }
+    .deadline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--gold);
+    }
+
+    .btn-register {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.85rem 2.5rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid var(--ink);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn-register:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* ── Venue ───────────────────────────────────────────────────────── */
+    .venue-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .venue-info p { font-size: 1rem; color: var(--muted); margin-bottom: 1rem; }
+
+    .venue-detail {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+      align-items: baseline;
+    }
+
+    .venue-detail-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      flex-shrink: 0;
+      width: 80px;
+    }
+
+    .map-embed {
+      width: 100%;
+      height: 320px;
+      border: 1px solid var(--rule);
+      filter: grayscale(0.3) contrast(1.05);
+    }
+
+    /* ── Accommodation ───────────────────────────────────────────────── */
+    .accommodation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .hotel-card {
+      padding: 1.5rem;
+      border: 1px solid var(--rule);
+      background: white;
+      transition: border-color 0.2s;
+    }
+
+    .hotel-card:hover { border-color: var(--gold); }
+
+    .hotel-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .hotel-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .hotel-desc { font-size: 0.87rem; color: var(--muted); }
+
+    /* ── Social Events ────────────────────────────────────────────────── */
+    .social-tba {
+      padding: 2.5rem;
+      border: 1px dashed var(--rule);
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* ── Organizers ──────────────────────────────────────────────────── */
+    .organizers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--rule);
+      margin-bottom: 3rem;
+    }
+
+    .organizer-card {
+      padding: 1.5rem;
+      background: white;
+      transition: background 0.2s;
+    }
+
+    .organizer-card:hover { background: var(--cream); }
+
+    .organizer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: block;
+    }
+
+    .organizer-affil {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── Sponsors ────────────────────────────────────────────────────── */
+    .sponsors-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.5rem 4rem;
+    }
+
+    .sponsor-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .sponsor-item:hover { color: var(--gold); border-color: var(--gold); text-decoration: none; }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .footer-left {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      opacity: 0.7;
+    }
+
+    .footer-contact {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-contact a { color: var(--gold-lt); }
+
+    /* ── Scroll animations ────────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Mobile ──────────────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      section { padding: 3.5rem 1.5rem; }
+      #hero { padding: 5rem 1.5rem 3rem; }
+      .reg-grid, .venue-grid, .program-structure { grid-template-columns: 1fr; }
+      #hero::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────────────── -->
+<nav>
+  <span class="nav-brand">QFT Bariloche 2026</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#registration">Registration</a></li>
+    <li><a href="#venue">Venue</a></li>
+    <li><a href="#organizers">Organizers</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────────────────────── -->
+<section id="hero" style="max-width: unset; padding-top: 6rem;">
+  <div class="hero-inner">
+    <div class="hero-tag">Bariloche · Argentina · 2026</div>
+
+    <h1 class="hero-title">
+      School &amp; Workshop on<br/><em>Advanced Aspects of QFT</em>
+    </h1>
+
+    <p class="hero-subtitle">
+      Forty years of the c-theorem — foundations, flows, and frontiers
+    </p>
+
+    <div class="hero-rule"></div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Dates</span>
+        <span class="hero-meta-value">May 18 – 27, 2026</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Location</span>
+        <span class="hero-meta-value">Instituto Balseiro, Bariloche</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Format</span>
+        <span class="hero-meta-value">School + Workshop</span>
+      </div>
+    </div>
+
+    <div class="hero-structure">
+      <div class="phase-block">
+        <span class="phase-label">Week I</span>
+        <span class="phase-name">School</span>
+        <span class="phase-dates">May 18 – 22</span>
+      </div>
+      <div class="phase-block">
+        <span class="phase-label">Week II</span>
+        <span class="phase-name">Workshop</span>
+        <span class="phase-dates">May 25 – 27</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ───────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About the Event</h2>
+  </div>
+  <div class="about-text fade-in">
+    <p>
+      We are organizing this conference at the <strong>Instituto Balseiro / Centro Atómico Bariloche</strong>,
+      in San Carlos de Bariloche, Argentina, during the last two weeks of May 2026.
+      The event will span approximately one and a half weeks.
+    </p>
+
+    <div class="about-highlight">
+      The timing coincides with the <em>40th anniversary of the c-theorem</em>, whose influence
+      provides a natural historical framework for the event.
+    </div>
+
+    <p>
+      The motivation for the meeting is to bring together leading researchers and students to discuss
+      foundational and modern methods in quantum field theory, broadly defined. Topics will include
+      structural aspects of QFT, renormalization group flows, irreversibility, and related
+      developments across high-energy theory and neighboring areas. The emphasis is on ideas and
+      methods that have shaped our understanding of quantum field theory.
+    </p>
+
+    <p>
+      The scientific program is broad, aiming to highlight diverse foundational contributions and
+      perspectives within QFT. The format will combine <strong>pedagogical lectures</strong> aimed at
+      advanced students with <strong>research-oriented talks</strong> and informal discussions.
+      Invited lecturers will deliver two, three, or four lectures — each lasting one to one and a
+      half hours — on an advanced QFT topic of their choice.
+    </p>
+
+    <p>
+      The School and Workshop are partially supported by the <strong>Simons Foundation</strong>. We
+      anticipate being able to offer support for travel and accommodation for invited lecturers.
+    </p>
+  </div>
+</section>
+
+<!-- ── Speakers ─────────────────────────────────────────────────────── -->
+<section id="speakers">
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Invited Speakers &amp; Lecturers</h2>
+  </div>
+
+  <div class="speakers-grid fade-in">
+    <!-- Speaker 1 -->
+    <div class="speaker-card">
+      <div class="speaker-num">01</div>
+      <span class="speaker-name speaker-tba">To be announced</span>
+      <span class="speaker-affil speaker-tba">—</span>
+      <span class="speaker-type">Lecturer</span>
+    </div>
+    <!-- Speaker 2 -->
+    <div class="speaker-card">
+      <div class="speaker-num">02</div>
+      <span class="speaker-name speaker-tba">To be announced</span>
+      <span class="speaker-affil speaker-tba">—</span>
+      <span class="speaker-type">Lecturer</span>
+    </div>
+    <!-- Speaker 3 -->
+    <div class="speaker-card">
+      <div class="speaker-num">03</div>
+      <span class="speaker-name speaker-tba">To be announced</span>
+      <span class="speaker-affil speaker-tba">—</span>
+      <span class="speaker-type">Lecturer</span>
+    </div>
+    <!-- Speaker 4 -->
+    <div class="speaker-card">
+      <div class="speaker-num">04</div>
+      <span class="speaker-name speaker-tba">To be announced</span>
+      <span class="speaker-affil speaker-tba">—</span>
+      <span class="speaker-type">Lecturer</span>
+    </div>
+    <!-- Speaker 5 -->
+    <div class="speaker-card">
+      <div class="speaker-num">05</div>
+      <span class="speaker-name speaker-tba">To be announced</span>
+      <span class="speaker-affil speaker-tba">—</span>
+      <span class="speaker-type">Lecturer</span>
+    </div>
+  </div>
+
+  <p style="margin-top:1.2rem; font-size:0.88rem; color:var(--muted); font-style:italic;">
+    Confirmed speakers will be announced shortly.
+  </p>
+</section>
+
+<!-- ── Program ──────────────────────────────────────────────────────── -->
+<section id="program">
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Scientific Program</h2>
+  </div>
+
+  <div class="program-structure fade-in">
+    <div class="prog-phase">
+      <div class="prog-phase-head">Week I · May 18–22</div>
+      <span class="prog-phase-title">School</span>
+      <p class="prog-phase-desc">
+        Pedagogical lecture series by leading experts. Each lecturer delivers
+        2–4 extended lectures (60–90 min) on an advanced QFT topic of their choice,
+        targeted at graduate students and early-career researchers.
+      </p>
+    </div>
+    <div class="prog-phase">
+      <div class="prog-phase-head">Week II · May 25–27</div>
+      <span class="prog-phase-title">Workshop</span>
+      <p class="prog-phase-desc">
+        Research-oriented talks and informal discussions on current frontier problems
+        in QFT, renormalization group flows, irreversibility, and related areas.
+      </p>
+    </div>
+  </div>
+
+  <div class="program-placeholder fade-in">
+    <div class="big-label">Detailed schedule coming soon</div>
+    <p style="font-size:0.88rem; color:var(--muted);">
+      The full timetable will be posted here once confirmed.
+    </p>
+  </div>
+</section>
+
+<!-- ── Registration ─────────────────────────────────────────────────── -->
+<section id="registration">
+  <div class="section-header fade-in">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Registration</h2>
+  </div>
+
+  <div class="reg-grid fade-in">
+    <div class="reg-info">
+      <h3>Registration Fees</h3>
+      <table class="fee-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Graduate Student</td>
+            <td class="fee-tba">TBA</td>
+          </tr>
+          <tr>
+            <td>Postdoc / Junior Researcher</td>
+            <td class="fee-tba">TBA</td>
+          </tr>
+          <tr>
+            <td>Senior Researcher / Faculty</td>
+            <td class="fee-tba">TBA</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:1rem; font-size:0.85rem; color:var(--muted);">
+        Financial support for invited lecturers (travel &amp; accommodation) is anticipated through the Simons Foundation grant.
+      </p>
+    </div>
+
+    <div class="reg-deadlines-col">
+      <h3 style="font-size:1.2rem; margin-bottom:1rem; font-weight:400;">Key Dates</h3>
+      <div class="reg-deadlines">
+        <div class="deadline-item">
+          <span class="deadline-label">Registration opens</span>
+          <span class="deadline-date">TBA</span>
+        </div>
+        <div class="deadline-item">
+          <span class="deadline-label">Early registration deadline</span>
+          <span class="deadline-date">TBA</span>
+        </div>
+        <div class="deadline-item">
+          <span class="deadline-label">Final registration deadline</span>
+          <span class="deadline-date">TBA</span>
+        </div>
+        <div class="deadline-item">
+          <span class="deadline-label">School begins</span>
+          <span class="deadline-date">May 18, 2026</span>
+        </div>
+        <div class="deadline-item">
+          <span class="deadline-label">Workshop begins</span>
+          <span class="deadline-date">May 25, 2026</span>
+        </div>
+      </div>
+
+      <a href="#" class="btn-register">Register Now</a>
+      <p style="margin-top:0.8rem; font-size:0.8rem; color:var(--muted); font-style:italic;">
+        Registration link will be activated shortly.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Venue ─────────────────────────────────────────────────────────── -->
+<section id="venue">
+  <div class="section-header fade-in">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Venue</h2>
+  </div>
+
+  <div class="venue-grid fade-in">
+    <div class="venue-info">
+      <p>
+        The event will be held at the <strong>Instituto Balseiro</strong>, part of the
+        Centro Atómico Bariloche (CAB), situated on the shores of Lago Nahuel Huapi in
+        the foothills of the Andes, San Carlos de Bariloche, Argentina.
+      </p>
+
+      <div class="venue-detail">
+        <span class="venue-detail-label">Address</span>
+        <span>Av. Bustillo km 9.5, R8402AGP Bariloche, Río Negro, Argentina</span>
+      </div>
+      <div class="venue-detail">
+        <span class="venue-detail-label">Website</span>
+        <a href="https://www.ib.edu.ar/" target="_blank">www.ib.edu.ar</a>
+      </div>
+      <div class="venue-detail">
+        <span class="venue-detail-label">Access</span>
+        <span>~20 min by bus from city center (lines 10, 20); taxi or remis also available.</span>
+      </div>
+      <div class="venue-detail">
+        <span class="venue-detail-label">Airport</span>
+        <span>BRC – Aeropuerto Internacional Teniente Luis Candelaria, ~15 km from IB.</span>
+      </div>
+    </div>
+
+    <div>
+      <!-- Google Maps embed centered on Instituto Balseiro -->
+      <iframe
+        class="map-embed"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2963.0!2d-71.3278!3d-41.1285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7d2e3cefffff%3A0x8b9f5c0b8ef7c67a!2sInstituto%20Balseiro!5e0!3m2!1sen!2sar!4v1700000000000!5m2!1sen!2sar">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Accommodation sub-section -->
+  <div style="margin-top: 3.5rem;" class="fade-in">
+    <h3 style="font-family: 'Cormorant Garamond', serif; font-size:1.5rem; font-weight:400; margin-bottom:1.5rem;">
+      Accommodation
+    </h3>
+    <p style="max-width:640px; color:var(--muted); font-size:0.95rem; margin-bottom:2rem;">
+      San Carlos de Bariloche offers a wide range of accommodation options, from campus housing
+      (available for students on a limited basis) to hotels and hostels in the city center (~10 km
+      from IB) and along Avenida Bustillo near the campus.
+    </p>
+    <div class="accommodation-grid">
+      <div class="hotel-card">
+        <span class="hotel-type">Campus Housing</span>
+        <span class="hotel-name">IB Residencias</span>
+        <p class="hotel-desc">On-site student housing available on a limited basis. Priority for registered graduate students. Contact the organizers.</p>
+      </div>
+      <div class="hotel-card">
+        <span class="hotel-type">Hotel · Nearby</span>
+        <span class="hotel-name">Hotel Tres Reyes</span>
+        <p class="hotel-desc">Classic Bariloche hotel close to the civic center. ~20 min from IB by bus.</p>
+      </div>
+      <div class="hotel-card">
+        <span class="hotel-type">Hotel · Mid-range</span>
+        <span class="hotel-name">Bustillo area hotels</span>
+        <p class="hotel-desc">Several comfortable options along Av. Bustillo, walking distance from IB. Recommended for participants seeking easy campus access.</p>
+      </div>
+      <div class="hotel-card">
+        <span class="hotel-type">Hostel</span>
+        <span class="hotel-name">City-center hostels</span>
+        <p class="hotel-desc">Multiple budget-friendly options in the city center. Bariloche has an excellent hostel culture, particularly suited to student participants.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Events sub-section -->
+  <div style="margin-top: 3.5rem;" class="fade-in">
+    <h3 style="font-family: 'Cormorant Garamond', serif; font-size:1.5rem; font-weight:400; margin-bottom:1.5rem;">
+      Social Program
+    </h3>
+    <div class="social-tba">
+      Social events — including a welcome reception, conference dinner,<br/>
+      and possible excursions in the Nahuel Huapi region — will be announced shortly.
+    </div>
+  </div>
+</section>
+
+<!-- ── Organizers & Sponsors ─────────────────────────────────────────── -->
+<section id="organizers">
+  <div class="section-header fade-in">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Organizing Committee</h2>
+  </div>
+
+  <div class="organizers-grid fade-in">
+    <div class="organizer-card">
+      <span class="organizer-name">Horacio Casini</span>
+      <span class="organizer-affil">Instituto Balseiro / CONICET</span>
+    </div>
+    <div class="organizer-card">
+      <span class="organizer-name">Marina Huerta</span>
+      <span class="organizer-affil">Instituto Balseiro / CONICET</span>
+    </div>
+    <div class="organizer-card">
+      <span class="organizer-name">Javier Magán</span>
+      <span class="organizer-affil">Instituto Balseiro / CONICET</span>
+    </div>
+    <div class="organizer-card">
+      <span class="organizer-name">Gonzalo Torroba</span>
+      <span class="organizer-affil">Instituto Balseiro / CONICET</span>
+    </div>
+  </div>
+
+  <div style="margin-top:3.5rem;" class="fade-in">
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; margin-bottom:1.5rem;">
+      Institutional Support
+    </h3>
+    <div class="sponsors-row">
+      <a class="sponsor-item" href="https://www.simonsfoundation.org/" target="_blank">Simons Foundation</a>
+      <a class="sponsor-item" href="https://www.conicet.gov.ar/" target="_blank">CONICET</a>
+      <a class="sponsor-item" href="https://www.argentina.gob.ar/cnea" target="_blank">CNEA</a>
+      <a class="sponsor-item" href="https://www.ib.edu.ar/" target="_blank">Instituto Balseiro</a>
+      <a class="sponsor-item" href="https://www.argentina.gob.ar/cnea/cab" target="_blank">Centro Atómico Bariloche</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-left">
+    School &amp; Workshop on Advanced Aspects of QFT — Bariloche, May 2026
+  </div>
+  <div class="footer-contact">
+    <a href="mailto:particulas.cab@gmail.com">particulas.cab@gmail.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://sites.google.com/view/particulasycampos-cabib/home" target="_blank">
+      Particles &amp; Fields Group
+    </a>
+  </div>
+</footer>
+
+<!-- ── Scroll animation JS ──────────────────────────────────────────── -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
