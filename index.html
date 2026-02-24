@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="Simons-Balseiro School and Workshop on Advanced Aspects of QFT. Instituto Balseiro, Bariloche, Argentina. May 18–27, 2026. Celebrating 40 years of the c-theorem." />
+    <meta property="og:title" content="School &amp; Workshop on Advanced Aspects of QFT — Bariloche 2026" />
+    <meta property="og:description" content="Simons-Balseiro School and Workshop exploring foundations, flows, and frontiers in quantum field theory. Instituto Balseiro, May 18–27, 2026." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://particulascab-workshop.github.io/school-workshop-2026/" />
+    <meta property="og:image" content="https://particulascab-workshop.github.io/school-workshop-2026/Alexander-Zamolodchikov-700x467.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
   <title>School & Workshop on Advanced Aspects of QFT — Bariloche 2026</title>
 
   <!-- Fonts -->
@@ -482,6 +491,30 @@
       .guide-grid { grid-template-columns: 1fr; }
       #venue > div { grid-template-columns: 1fr !important; }
     }
+
+    /* Mobile Hamburger Menu */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 101; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: all 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-overlay { display: none; }
+    /* Participants Grid */
+    .participants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.8rem; }
+    .participant-item { background: white; padding: 1rem 1.2rem; border: 1px solid var(--rule); font-size: 0.92rem; }
+    .participant-item .p-name { font-weight: 600; }
+    .participant-item .p-affil { font-size: 0.82rem; font-style: italic; color: var(--ink-light); }
+    .participants-placeholder { text-align: center; padding: 2rem; color: var(--ink-light); font-style: italic; }
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links { display: flex !important; flex-direction: column; position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--paper); padding: 5rem 2rem 2rem; gap: 1.5rem; box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: right 0.3s ease; z-index: 100; overflow-y: auto; }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: 1rem; }
+      .btn-nav-reg { text-align: center; }
+      .mobile-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 99; }
+      .mobile-overlay.active { display: block; }
+      .participants-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -492,14 +525,17 @@
 <!-- Navigation -->
 <nav>
   <a href="#" class="nav-brand">QFT Bariloche 2026</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#speakers">Speakers</a></li>
-    <li><a href="#program">Program</a></li>
-    <li><a href="#bariloche">Bariloche</a></li>
-    <li><a href="#venue">Venue</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#speakers" onclick="closeMenu()">Speakers</a></li>
+    <li><a href="#program" onclick="closeMenu()">Program</a></li>
+    <li><a href="#bariloche" onclick="closeMenu()">Bariloche</a></li>
+    <li><a href="#registration" onclick="closeMenu()">Registration</a></li>
+    <li><a href="#venue" onclick="closeMenu()">Venue</a></li>
     <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSefGzwFfIgDbc5fZNfzgS6TV-SyRbkh77zcADtsQe9YUmqieg/viewform?usp=header" target="_blank" class="btn-nav-reg">Register</a></li>
   </ul>
+<button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
 </nav>
 
 <!-- Hero Section -->
@@ -870,8 +906,20 @@
         </ul>
     </div>
     <div class="map-wrapper">
-        <iframe loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2963.0!2d-71.3278!3d-41.1285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7d2e3cefffff%3A0x8b9f5c0b8ef7c67a!2sInstituto%20Balseiro!5e0!3m2!1sen!2sar!4v1700000000000!5m2!1sen!2sar" allowfullscreen></iframe>
+        <iframe loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2963.0!2d-71.4141568!3d-41.1137375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a70cf612b607f%3A0xf2971227dcef5551!2sInstituto%20Balseiro!5e0!3m2!1sen!2sar!4v1740000000000!5m2!1sen!2sar" allowfullscreen></iframe>
     </div>
+  </div>
+</section>
+
+
+<!-- Participants Section -->
+<section id="participants">
+  <div class="section-head">
+    <span class="section-num">07. Attendees</span>
+    <h2 class="section-title">Participants</h2>
+  </div>
+  <div id="participantsList">
+    <p class="participants-placeholder">The list of confirmed participants will be published here after the registration deadline.</p>
   </div>
 </section>
 
@@ -880,7 +928,7 @@
     <div class="footer-content">
         <div class="footer-logo">QFT Bariloche 2026</div>
         <div class="footer-links">
-            <a href="/cdn-cgi/l/email-protection#a8d8c9dadcc1cbddc4c9db86cbc9cae8cfc5c9c1c486cbc7c5">Contact Organizers</a>
+            <a href="mailto:particulas.cab@gmail.com">Contact Organizers</a>
             <a href="https://www.simonsfoundation.org/" target="_blank">Simons Foundation</a>
             <a href="https://www.conicet.gov.ar/" target="_blank">CONICET</a>
             <a href="https://www.ib.edu.ar/" target="_blank">Instituto Balseiro</a>
@@ -918,7 +966,38 @@
             if (el !== item) el.classList.remove('open');
         });
     }
-</script>
+
+
+    // Hamburger Menu
+    function toggleMenu() {
+      document.getElementById('hamburger').classList.toggle('active');
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('mobileOverlay').classList.toggle('active');
+    }
+    function closeMenu() {
+      document.getElementById('hamburger').classList.remove('active');
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('mobileOverlay').classList.remove('active');
+    }
+
+    // Participants List (edit this array to populate the list)
+    var participants = [
+      // { name: "Jane Doe", affiliation: "MIT" },
+      // { name: "John Smith", affiliation: "CERN" },
+    ];
+    function renderParticipants() {
+      var container = document.getElementById('participantsList');
+      if (participants.length === 0) return;
+      participants.sort(function(a, b) { return a.name.localeCompare(b.name); });
+      var html = '<div class="participants-grid">';
+      for (var i = 0; i < participants.length; i++) {
+        html += '<div class="participant-item"><span class="p-name">' + participants[i].name + '</span><br><span class="p-affil">' + participants[i].affiliation + '</span></div>';
+      }
+      html += '</div>';
+      container.innerHTML = html;
+    }
+    renderParticipants();
+  </script>
 
 </body>
 </html>
