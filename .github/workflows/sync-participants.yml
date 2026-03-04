@@ -1,0 +1,40 @@
+name: Sync Participants List
+
+on:
+  # Manual trigger - the secretary clicks "Run workflow" on GitHub Actions
+  workflow_dispatch:
+
+  # Optional: also sync automatically every day at 08:00 UTC
+  # schedule:
+  #   - cron: "0 8 * * *"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit the updated index.html
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run sync script
+        env:
+          SHEET_CSV_URL: ${{ secrets.SHEET_CSV_URL }}
+        run: python sync_participants.py
+
+      - name: Commit and push if list changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "chore: sync participants list [skip ci]"
+          git push
