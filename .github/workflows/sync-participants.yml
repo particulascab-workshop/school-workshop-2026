@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
 
   # Optional: also sync automatically every day at 08:00 UTC
-  # schedule:
-  #   - cron: "0 8 * * *"
+  schedule:
+  - cron: "0 8 * * *"
 
 jobs:
   sync:
