@@ -515,7 +515,38 @@
       .mobile-overlay.active { display: block; }
       .participants-grid { grid-template-columns: 1fr; }
     }
-  </style>
+  
+    /* Workshop Speakers (compact list) */
+    .ws-speakers-list {
+      text-align: center;
+      line-height: 1.9;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .ws-speakers-list .ws-speaker {
+      display: inline;
+      white-space: nowrap;
+    }
+    .ws-speakers-list .ws-name {
+      font-weight: 600;
+    }
+    .ws-speakers-list .ws-affil {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--ink-light);
+    }
+    .ws-speakers-list .ws-sep {
+      color: var(--gold);
+      margin: 0 0.2rem;
+    }
+    .ws-speakers-placeholder {
+      text-align: center;
+      padding: 1rem;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+
+    </style>
 </head>
 <body>
 
@@ -531,6 +562,7 @@
     <li><a href="#program" onclick="closeMenu()">Program</a></li>
     <li><a href="#bariloche" onclick="closeMenu()">Bariloche</a></li>
     <li><a href="#registration" onclick="closeMenu()">Registration</a></li>
+    <li><a href="#participants" onclick="closeMenu()">Participants</a></li>
     <li><a href="#venue" onclick="closeMenu()">Venue</a></li>
     <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSefGzwFfIgDbc5fZNfzgS6TV-SyRbkh77zcADtsQe9YUmqieg/viewform?usp=header" target="_blank" class="btn-nav-reg">Register</a></li>
   </ul>
@@ -681,6 +713,16 @@
 
   <div style="text-align:center; margin-top:2rem;">
     <p class="mono" style="color:var(--ink-light)">More speakers confirming shortly.</p>
+  </div>
+
+  <!-- Confirmed Workshop Speakers (compact) -->
+  <div style="margin-top:4rem; border-top:1px solid var(--rule); padding-top:3rem;">
+    <div class="section-head">
+      <h3 style="font-size:1.8rem;" class="section-title">Confirmed Workshop Speakers</h3>
+    </div>
+    <div id="speakersList">
+      <p class="ws-speakers-placeholder">Workshop speakers will be listed here as they are confirmed.</p>
+    </div>
   </div>
 </section>
 
@@ -1004,7 +1046,10 @@
     {"name": "Gonzalo Torroba", "affiliation": "CAB-IB, Argentina"},
     {"name": "Mitch Weaver.", "affiliation": "UC, USA"}
   ];
-    function renderParticipants() {
+    // Workshop Speakers List (edit this array to populate the list)
+      var speakers = [];
+
+      function renderParticipants() {
       var container = document.getElementById('participantsList');
       if (participants.length === 0) return;
       participants.sort(function(a, b) { return a.name.localeCompare(b.name); });
@@ -1016,6 +1061,27 @@
       container.innerHTML = html;
     }
     renderParticipants();
+
+      function renderSpeakers() {
+        var container = document.getElementById('speakersList');
+        if (speakers.length === 0) return;
+        speakers.sort(function(a, b) {
+          return a.name.split(' ').pop().localeCompare(b.name.split(' ').pop());
+        });
+        var parts = [];
+        for (var i = 0; i < speakers.length; i++) {
+          parts.push(
+            '<span class="ws-speaker">' +
+            '<span class="ws-name">' + speakers[i].name + '</span> ' +
+            '<span class="ws-affil">(' + speakers[i].affiliation + ')</span>' +
+            '</span>'
+          );
+        }
+        container.innerHTML = '<div class="ws-speakers-list">' +
+          parts.join('<span class="ws-sep"> &middot; </span>') +
+          '</div>';
+      }
+      renderSpeakers();
   </script>
 
 </body>
