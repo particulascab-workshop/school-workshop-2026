@@ -37,5 +37,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html
           git diff --cached --quiet || git commit -m "chore: sync participants list [skip ci]"
-          git pull --rebase origin main
-          git push
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break
+            [ "$i" -lt 3 ] && sleep 5
+          done
