@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lecture List · Simons-Balseiro QFT 2026</title><style>
+:root {
+  --bg: #f7f4ee;
+  --paper: #fffdf8;
+  --ink: #1d2935;
+  --muted: #667085;
+  --line: #e3dacb;
+  --accent: #7a341c;
+  --accent-2: #0f5f6a;
+  --soft: #f1e7d8;
+  --break: #efe7dd;
+  --shadow: 0 18px 45px rgba(48, 36, 24, 0.10);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(122, 52, 28, 0.09), transparent 36rem),
+    linear-gradient(180deg, #fbf8f1 0%, var(--bg) 58%);
+  line-height: 1.45;
+}
+.page { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 54px; }
+.hero { margin-bottom: 22px; }
+.kicker { margin: 0 0 6px; color: var(--accent); font-size: .78rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+h1 { margin: 0; font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.05; letter-spacing: -0.035em; }
+.panel { background: color-mix(in oklab, var(--paper), white 26%); border: 1px solid rgba(122, 52, 28, .15); border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 860px; }
+th { position: sticky; top: 0; z-index: 2; background: #2e4050; color: white; font-size: .85rem; line-height: 1.2; letter-spacing: .01em; text-align: left; padding: 14px 16px; border-right: 1px solid rgba(255,255,255,.15); }
+th:first-child { border-top-left-radius: 22px; }
+th:last-child { border-top-right-radius: 22px; border-right: none; }
+td { vertical-align: top; padding: 15px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,.62); }
+td:last-child { border-right: none; }
+tr:last-child td { border-bottom: none; }
+.time { width: 130px; white-space: nowrap; color: #344054; font-weight: 760; background: #fbf6ed; }
+.event { min-height: 70px; }
+.event-code { display: inline-block; color: var(--accent); font-weight: 850; margin-bottom: 4px; }
+.event-speaker { font-weight: 780; }
+.event-title { display: block; color: #283846; }
+.break-row td:not(.time) { background: var(--break); color: #735d45; font-weight: 850; text-align: center; letter-spacing: .04em; }
+.break-row td:empty { display: none; }
+.break-row td[colspan] { border-right: none; }
+.empty { background: rgba(255,255,255,.35); color: #98a2b3; }
+.badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 9px; font-size: .72rem; font-weight: 850; letter-spacing: .03em; background: #f8e7dc; color: var(--accent); margin-bottom: 6px; }
+.colloquium { background: #f3fbfc; border-left: 4px solid var(--accent-2); }
+.discussion { background: #f8f3ea; }
+.cards { display: none; }
+.lecture-table { min-width: 760px; }
+.lecture-table th:nth-child(1), .lecture-table td:nth-child(1) { width: 72px; text-align: center; }
+.lecture-table th:nth-child(2), .lecture-table td:nth-child(2) { width: 130px; }
+.lecture-table th:nth-child(3), .lecture-table td:nth-child(3) { width: 150px; white-space: nowrap; }
+.lecture-table th:nth-child(4), .lecture-table td:nth-child(4) { width: 145px; }
+.lecture-id { font-weight: 850; color: var(--accent); }
+.speaker { font-weight: 760; }
+@media (max-width: 760px) {
+  .page { width: min(100% - 24px, 640px); padding-top: 24px; }
+  .desktop-only { display: none; }
+  .cards { display: grid; gap: 12px; }
+  .day-card, .lecture-card { background: rgba(255,255,255,.74); border: 1px solid var(--line); border-radius: 18px; padding: 14px; box-shadow: 0 8px 22px rgba(48,36,24,.06); }
+  .day-card h2, .lecture-card h2 { margin: 0 0 10px; font-size: 1.05rem; }
+  .slot { display: grid; grid-template-columns: 112px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .slot:first-of-type { border-top: none; }
+  .slot .time { width: auto; background: transparent; padding: 0; font-size: .88rem; }
+  .slot .event { min-height: 0; padding: 0; }
+  .lecture-card { display: grid; gap: 6px; }
+  .lecture-meta { color: var(--muted); font-size: .9rem; }
+}
+@media print {
+  body { background: white; }
+  .page { width: 100%; padding: 0; }
+  .panel { box-shadow: none; border-radius: 0; }
+  th { position: static; }
+}
+</style></head>
+<body><main class="page"><header class="hero"><p class="kicker">Simons-Balseiro QFT School 2026</p><h1>Lecture list</h1></header><section class="panel desktop-only"><div class="table-wrap"><table class="lecture-table" aria-label="Lecture list"><thead><tr><th>#</th><th>Day</th><th>Time</th><th>Speaker</th><th>Title</th></tr></thead><tbody><tr><td><span class="lecture-id">L1</span></td><td>Mon May 18</td><td>11:00 – 12:30</td><td><span class="speaker">Srednicki</span></td><td>RG 1</td></tr><tr><td><span class="lecture-id">L2</span></td><td>Mon May 18</td><td>14:00 – 15:30</td><td><span class="speaker">Fewster</span></td><td>Introduction to algebraic QFT</td></tr><tr><td><span class="lecture-id">L3</span></td><td>Mon May 18</td><td>16:00 – 17:30</td><td><span class="speaker">Srednicki</span></td><td>RG 2</td></tr><tr><td><span class="lecture-id">L4</span></td><td>Tue May 19</td><td>9:00 – 10:30</td><td><span class="speaker">Hollands</span></td><td>Modular flows/operators in QFT 1</td></tr><tr><td><span class="lecture-id">L5</span></td><td>Tue May 19</td><td>11:00 – 12:30</td><td><span class="speaker">Fewster</span></td><td>Measurement theory in QFT 1</td></tr><tr><td><span class="lecture-id">L6</span></td><td>Tue May 19</td><td>14:00 – 15:30</td><td><span class="speaker">Hollands</span></td><td>Modular flows/operators in QFT 2</td></tr><tr><td><span class="lecture-id">L7</span></td><td>Wed May 20</td><td>9:00 – 10:30</td><td><span class="speaker">Shifman</span></td><td>Introduction to supersymmetry. Non-Abelian vortex strings</td></tr><tr><td><span class="lecture-id">L8</span></td><td>Wed May 20</td><td>11:00 – 12:30</td><td><span class="speaker">Srednicki</span></td><td>Interpretations of QM &amp; QFT</td></tr><tr><td><span class="lecture-id">L9</span></td><td>Wed May 20</td><td>14:00 – 15:30</td><td><span class="speaker">Gomis</span></td><td>Infrared dynamics of gauge theories</td></tr><tr><td><span class="lecture-id">L10</span></td><td>Thu May 21</td><td>9:00 – 10:30</td><td><span class="speaker">Gomis</span></td><td>Infrared dynamics of gauge theories</td></tr><tr><td><span class="lecture-id">L11</span></td><td>Thu May 21</td><td>11:00 – 12:30</td><td><span class="speaker">Hollands</span></td><td>Negative energies in QFT/GR</td></tr><tr><td><span class="lecture-id">L12</span></td><td>Thu May 21</td><td>14:00 – 15:30</td><td><span class="speaker">Shifman</span></td><td>Correspondence between two and four dimensions in supersymmetry</td></tr><tr><td><span class="lecture-id">L13</span></td><td>Thu May 21</td><td>16:00 – 17:30</td><td><span class="speaker">Fewster</span></td><td>Measurement theory in QFT 2</td></tr><tr><td><span class="lecture-id">L14</span></td><td>Fri May 22</td><td>9:00 – 10:30</td><td><span class="speaker">Gomis</span></td><td>Infrared dynamics of gauge theories</td></tr><tr><td><span class="lecture-id">L15</span></td><td>Fri May 22</td><td>11:00 – 12:30</td><td><span class="speaker">Shifman</span></td><td>Surprising multiplicities. Global anomalies</td></tr><tr><td><span class="lecture-id">—</span></td><td>Fri May 22</td><td>14:30 – 15:30</td><td><span class="speaker">Srednicki</span></td><td>Colloquium: Quantum Chaos and the Foundations of Statistical Mechanics</td></tr></tbody></table></div></section><section class="cards" aria-label="Lecture cards"><article class="lecture-card"><h2><span class="lecture-id">L1</span> · RG 1</h2><div class="lecture-meta">Mon May 18 · 11:00 – 12:30</div><div><span class="speaker">Srednicki</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L2</span> · Introduction to algebraic QFT</h2><div class="lecture-meta">Mon May 18 · 14:00 – 15:30</div><div><span class="speaker">Fewster</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L3</span> · RG 2</h2><div class="lecture-meta">Mon May 18 · 16:00 – 17:30</div><div><span class="speaker">Srednicki</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L4</span> · Modular flows/operators in QFT 1</h2><div class="lecture-meta">Tue May 19 · 9:00 – 10:30</div><div><span class="speaker">Hollands</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L5</span> · Measurement theory in QFT 1</h2><div class="lecture-meta">Tue May 19 · 11:00 – 12:30</div><div><span class="speaker">Fewster</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L6</span> · Modular flows/operators in QFT 2</h2><div class="lecture-meta">Tue May 19 · 14:00 – 15:30</div><div><span class="speaker">Hollands</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L7</span> · Introduction to supersymmetry. Non-Abelian vortex strings</h2><div class="lecture-meta">Wed May 20 · 9:00 – 10:30</div><div><span class="speaker">Shifman</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L8</span> · Interpretations of QM &amp; QFT</h2><div class="lecture-meta">Wed May 20 · 11:00 – 12:30</div><div><span class="speaker">Srednicki</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L9</span> · Infrared dynamics of gauge theories</h2><div class="lecture-meta">Wed May 20 · 14:00 – 15:30</div><div><span class="speaker">Gomis</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L10</span> · Infrared dynamics of gauge theories</h2><div class="lecture-meta">Thu May 21 · 9:00 – 10:30</div><div><span class="speaker">Gomis</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L11</span> · Negative energies in QFT/GR</h2><div class="lecture-meta">Thu May 21 · 11:00 – 12:30</div><div><span class="speaker">Hollands</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L12</span> · Correspondence between two and four dimensions in supersymmetry</h2><div class="lecture-meta">Thu May 21 · 14:00 – 15:30</div><div><span class="speaker">Shifman</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L13</span> · Measurement theory in QFT 2</h2><div class="lecture-meta">Thu May 21 · 16:00 – 17:30</div><div><span class="speaker">Fewster</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L14</span> · Infrared dynamics of gauge theories</h2><div class="lecture-meta">Fri May 22 · 9:00 – 10:30</div><div><span class="speaker">Gomis</span></div></article><article class="lecture-card"><h2><span class="lecture-id">L15</span> · Surprising multiplicities. Global anomalies</h2><div class="lecture-meta">Fri May 22 · 11:00 – 12:30</div><div><span class="speaker">Shifman</span></div></article><article class="lecture-card"><h2><span class="lecture-id">—</span> · Colloquium: Quantum Chaos and the Foundations of Statistical Mechanics</h2><div class="lecture-meta">Fri May 22 · 14:30 – 15:30</div><div><span class="speaker">Srednicki</span></div></article></section></main></body></html>
