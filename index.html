@@ -324,6 +324,30 @@
         color: var(--lake);
         border-color: var(--gold);
     }
+    .program-links {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin: -0.5rem 0 2rem;
+    }
+    .program-link-btn {
+        display: inline-block;
+        padding: 0.45rem 1rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--lake) !important;
+        background: white;
+        border: 1px solid var(--rule) !important;
+        border-radius: 2px;
+    }
+    .program-link-btn:hover {
+        background: var(--lake);
+        color: white !important;
+        border-color: var(--lake) !important;
+    }
     .schedule-container {
         display: none;
         background: white;
@@ -736,6 +760,10 @@
   <div class="program-tabs">
     <button class="tab-btn active" onclick="openTab(event, 'week1')">Week I: School</button>
     <button class="tab-btn" onclick="openTab(event, 'week2')">Week II: Workshop</button>
+  </div>
+  <div class="program-links" aria-label="Detailed school program pages">
+    <a class="program-link-btn" href="qft_school_2026_schedule.html" target="_blank" rel="noopener">Full School Schedule</a>
+    <a class="program-link-btn" href="qft_school_2026_lectures.html" target="_blank" rel="noopener">Lecture List</a>
   </div>
 
   <div id="week1" class="schedule-container active">
