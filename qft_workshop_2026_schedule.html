@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workshop Schedule · Simons-Balseiro QFT 2026</title>
+  <style>
+:root {
+  --bg: #f7f4ee;
+  --paper: #fffdf8;
+  --ink: #1d2935;
+  --muted: #667085;
+  --line: #e3dacb;
+  --accent: #7a341c;
+  --accent-2: #0f5f6a;
+  --soft: #f1e7d8;
+  --break: #efe7dd;
+  --shadow: 0 18px 45px rgba(48, 36, 24, 0.10);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(122, 52, 28, 0.09), transparent 36rem),
+    linear-gradient(180deg, #fbf8f1 0%, var(--bg) 58%);
+  line-height: 1.45;
+}
+.page {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 34px 0 54px;
+}
+.hero { margin-bottom: 22px; }
+.kicker {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+.subtitle {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+.panel {
+  background: color-mix(in oklab, var(--paper), white 26%);
+  border: 1px solid rgba(122, 52, 28, .15);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 760px;
+}
+th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #2e4050;
+  color: white;
+  font-size: .85rem;
+  line-height: 1.2;
+  letter-spacing: .01em;
+  text-align: left;
+  padding: 14px 16px;
+  border-right: 1px solid rgba(255,255,255,.15);
+}
+th:first-child { border-top-left-radius: 22px; }
+th:last-child { border-top-right-radius: 22px; border-right: none; }
+td {
+  vertical-align: middle;
+  padding: 15px 16px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.62);
+}
+td:last-child { border-right: none; }
+tr:last-child td { border-bottom: none; }
+.time {
+  width: 132px;
+  white-space: nowrap;
+  color: #344054;
+  font-weight: 760;
+  background: #fbf6ed;
+  vertical-align: middle;
+}
+.event { min-height: 58px; }
+.speaker { font-weight: 780; }
+.session-label { font-weight: 780; }
+.break-row td:not(.time) {
+  background: var(--break);
+  color: #735d45;
+  font-weight: 850;
+  text-align: center;
+  letter-spacing: .04em;
+}
+.break-row td[colspan] { border-right: none; }
+.student, .poster, .welcome {
+  background: #f8f3ea;
+}
+.break-cell {
+  background: var(--break);
+  color: #735d45;
+  font-weight: 850;
+  letter-spacing: .04em;
+  text-align: center;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: .72rem;
+  font-weight: 850;
+  letter-spacing: .03em;
+  background: #f8e7dc;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.cards { display: none; }
+@media (max-width: 760px) {
+  .page { width: min(100% - 24px, 640px); padding-top: 24px; }
+  .desktop-only { display: none; }
+  .cards { display: grid; gap: 12px; }
+  .day-card {
+    background: rgba(255,255,255,.74);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: 0 8px 22px rgba(48,36,24,.06);
+  }
+  .day-card h2 { margin: 0 0 10px; font-size: 1.05rem; }
+  .slot {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+  }
+  .slot:first-of-type { border-top: none; }
+  .slot .time { width: auto; background: transparent; padding: 0; font-size: .88rem; }
+  .slot .event { min-height: 0; padding: 0; background: transparent; }
+}
+@media (max-width: 430px) {
+  .slot { grid-template-columns: 1fr; gap: 2px; }
+  .slot .time { color: var(--accent); }
+}
+@media print {
+  body { background: white; }
+  .page { width: 100%; padding: 0; }
+  .panel { box-shadow: none; border-radius: 0; }
+  th { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="kicker">Simons-Balseiro QFT Workshop 2026</p>
+      <h1>Workshop schedule</h1>
+      <p class="subtitle">May 25–27, 2026 · Instituto Balseiro, Bariloche</p>
+    </header>
+
+    <section class="panel desktop-only">
+      <div class="table-wrap">
+        <table aria-label="Workshop schedule">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Monday<br>May 25</th>
+              <th>Tuesday<br>May 26</th>
+              <th>Wednesday<br>May 27</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 9:00 - 10:00 -->
+            <tr>
+              <td class="time">9:00 – 10:00</td>
+              <td class="event welcome"><span class="badge">Opening</span><br><span class="session-label">Welcoming + G. Torroba</span></td>
+              <td class="event"><span class="speaker">P. Argyres</span></td>
+              <td class="event"><span class="speaker">G. Sierra</span></td>
+            </tr>
+            <!-- 10:00 - 10:45 : Coffee Break (all days) -->
+            <tr class="break-row">
+              <td class="time">10:00 – 10:45</td>
+              <td colspan="3">COFFEE BREAK</td>
+            </tr>
+            <!-- 10:45 - 11:30 -->
+            <tr>
+              <td class="time">10:45 – 11:30</td>
+              <td class="event"><span class="speaker">P. Bueno</span></td>
+              <td class="event"><span class="speaker">D. Blanco</span></td>
+              <td class="event"><span class="speaker">M. Lotito</span></td>
+            </tr>
+            <!-- 11:30 - 12:15 -->
+            <tr>
+              <td class="time">11:30 – 12:15</td>
+              <td class="event"><span class="speaker">C. Agon</span></td>
+              <td class="event"><span class="speaker">J. Magan</span></td>
+              <td class="event"><span class="speaker">I. Salazar</span></td>
+            </tr>
+            <!-- 12:15 - 14:00 : Lunch -->
+            <tr class="break-row">
+              <td class="time">12:15 – 14:00</td>
+              <td colspan="3">LUNCH</td>
+            </tr>
+            <!-- 14:00 - 14:45
+                 Mon: Zamolodchikov  (rowspan 2 → 14:00-15:00)
+                 Tue: Student talks 1 (rowspan 1 → 14:00-14:45)
+                 Wed: Student talks 2 (rowspan 2 → 14:00-15:00) -->
+            <tr>
+              <td class="time">14:00 – 14:45</td>
+              <td class="event" rowspan="2"><span class="speaker">A. Zamolodchikov</span></td>
+              <td class="event student"><span class="badge">Student session</span><br><span class="session-label">Student talks 1</span></td>
+              <td class="event student" rowspan="2"><span class="badge">Student session</span><br><span class="session-label">Student talks 2</span></td>
+            </tr>
+            <!-- 14:45 - 15:00
+                 Tue: J. Huertas (rowspan 2 → 14:45-15:30) -->
+            <tr>
+              <td class="time">14:45 – 15:00</td>
+              <td class="event" rowspan="2"><span class="speaker">J. Huertas</span></td>
+            </tr>
+            <!-- 15:00 - 15:30
+                 Mon: P. Martinez (rowspan 2 → 15:00-15:45)
+                 Wed: G. Silva    (rowspan 2 → 15:00-15:45) -->
+            <tr>
+              <td class="time">15:00 – 15:30</td>
+              <td class="event" rowspan="2"><span class="speaker">P. Martinez</span></td>
+              <td class="event" rowspan="2"><span class="speaker">G. Silva</span></td>
+            </tr>
+            <!-- 15:30 - 15:45
+                 Tue: Poster Session + Coffee Break (rowspan 2 → 15:30-17:00) -->
+            <tr>
+              <td class="time">15:30 – 15:45</td>
+              <td class="event poster" rowspan="2"><span class="badge">Poster session</span><br><span class="session-label">Poster Session + Coffee Break</span></td>
+            </tr>
+            <!-- 15:45 - 17:00
+                 Mon: Poster Session + Coffee Break
+                 Wed: Coffee Break -->
+            <tr>
+              <td class="time">15:45 – 17:00</td>
+              <td class="event poster"><span class="badge">Poster session</span><br><span class="session-label">Poster Session + Coffee Break</span></td>
+              <td class="event break-cell">COFFEE BREAK</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="cards" aria-label="Workshop schedule by day">
+      <article class="day-card">
+        <h2>Monday<br>May 25</h2>
+        <div class="slot"><div class="time">9:00 – 10:00</div><div class="event welcome"><span class="badge">Opening</span><br><span class="session-label">Welcoming + G. Torroba</span></div></div>
+        <div class="slot"><div class="time">10:00 – 10:45</div><div class="event break-cell">COFFEE BREAK</div></div>
+        <div class="slot"><div class="time">10:45 – 11:30</div><div class="event"><span class="speaker">P. Bueno</span></div></div>
+        <div class="slot"><div class="time">11:30 – 12:15</div><div class="event"><span class="speaker">C. Agon</span></div></div>
+        <div class="slot"><div class="time">12:15 – 14:00</div><div class="event break-cell">LUNCH</div></div>
+        <div class="slot"><div class="time">14:00 – 15:00</div><div class="event"><span class="speaker">A. Zamolodchikov</span></div></div>
+        <div class="slot"><div class="time">15:00 – 15:45</div><div class="event"><span class="speaker">P. Martinez</span></div></div>
+        <div class="slot"><div class="time">15:45 – 17:00</div><div class="event poster"><span class="badge">Poster session</span><br><span class="session-label">Poster Session + Coffee Break</span></div></div>
+      </article>
+      <article class="day-card">
+        <h2>Tuesday<br>May 26</h2>
+        <div class="slot"><div class="time">9:00 – 10:00</div><div class="event"><span class="speaker">P. Argyres</span></div></div>
+        <div class="slot"><div class="time">10:00 – 10:45</div><div class="event break-cell">COFFEE BREAK</div></div>
+        <div class="slot"><div class="time">10:45 – 11:30</div><div class="event"><span class="speaker">D. Blanco</span></div></div>
+        <div class="slot"><div class="time">11:30 – 12:15</div><div class="event"><span class="speaker">J. Magan</span></div></div>
+        <div class="slot"><div class="time">12:15 – 14:00</div><div class="event break-cell">LUNCH</div></div>
+        <div class="slot"><div class="time">14:00 – 14:45</div><div class="event student"><span class="badge">Student session</span><br><span class="session-label">Student talks 1</span></div></div>
+        <div class="slot"><div class="time">14:45 – 15:30</div><div class="event"><span class="speaker">J. Huertas</span></div></div>
+        <div class="slot"><div class="time">15:30 – 17:00</div><div class="event poster"><span class="badge">Poster session</span><br><span class="session-label">Poster Session + Coffee Break</span></div></div>
+      </article>
+      <article class="day-card">
+        <h2>Wednesday<br>May 27</h2>
+        <div class="slot"><div class="time">9:00 – 10:00</div><div class="event"><span class="speaker">G. Sierra</span></div></div>
+        <div class="slot"><div class="time">10:00 – 10:45</div><div class="event break-cell">COFFEE BREAK</div></div>
+        <div class="slot"><div class="time">10:45 – 11:30</div><div class="event"><span class="speaker">M. Lotito</span></div></div>
+        <div class="slot"><div class="time">11:30 – 12:15</div><div class="event"><span class="speaker">I. Salazar</span></div></div>
+        <div class="slot"><div class="time">12:15 – 14:00</div><div class="event break-cell">LUNCH</div></div>
+        <div class="slot"><div class="time">14:00 – 15:00</div><div class="event student"><span class="badge">Student session</span><br><span class="session-label">Student talks 2</span></div></div>
+        <div class="slot"><div class="time">15:00 – 15:45</div><div class="event"><span class="speaker">G. Silva</span></div></div>
+        <div class="slot"><div class="time">15:45 – 17:00</div><div class="event break-cell">COFFEE BREAK</div></div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
