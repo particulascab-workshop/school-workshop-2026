@@ -30,8 +30,7 @@ HTML_FILE = "index.html"
 
 # Matches the full `var participants = [ ... ];` block in the JS
 PARTICIPANTS_RE = re.compile(
-    r"var participants\s*=\s*\[[^\]]*\];",
-    re.DOTALL,
+    r"var participants\s*=\s*\[[\s\S]*?\];",
 )
 
 # ── Fetch & parse ─────────────────────────────────────────────────────────────

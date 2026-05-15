@@ -30,8 +30,7 @@ HTML_FILE = "index.html"
 
 # Matches the full `var speakers = [ ... ];` block in the JS
 SPEAKERS_RE = re.compile(
-    r"var speakers\s*=\s*\[[^\]]*\];",
-    re.DOTALL,
+    r"var speakers\s*=\s*\[[\s\S]*?\];",
 )
 
 # ── Fetch & parse ─────────────────────────────────────────────────────────────
