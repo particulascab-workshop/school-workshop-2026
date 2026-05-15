@@ -324,14 +324,13 @@
         color: var(--lake);
         border-color: var(--gold);
     }
-    .program-links {
+    .tab-program-links {
         display: flex;
-        justify-content: center;
         gap: 0.75rem;
         flex-wrap: wrap;
-        width: fit-content;
-        max-width: 100%;
-        margin: -0.5rem auto 2rem;
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--rule);
     }
     .program-link-btn {
         display: inline-block;
@@ -358,15 +357,6 @@
         animation: fadeUp 0.4s ease;
     }
     .schedule-container.active { display: block; }
-    .schedule-weeks-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0 3rem;
-    }
-    .schedule-week-col + .schedule-week-col {
-        border-left: 1px solid var(--rule);
-        padding-left: 3rem;
-    }
     .week-col-label {
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.72rem;
@@ -783,62 +773,35 @@
     <button class="tab-btn active" onclick="openTab(event, 'week1')">Week I: School</button>
     <button class="tab-btn" onclick="openTab(event, 'week2')">Week II: Workshop</button>
   </div>
-  <div class="program-links" aria-label="Detailed program pages">
-    <a class="program-link-btn" href="qft_school_2026_schedule.html">Full School Schedule</a>
-    <a class="program-link-btn" href="qft_school_2026_lectures.html">Lecture List</a>
-    <a class="program-link-btn" href="qft_workshop_2026_schedule.html">Full Workshop Schedule</a>
-  </div>
-
   <div id="week1" class="schedule-container active">
-    <div class="schedule-weeks-grid">
-      <div class="schedule-week-col">
-        <p class="week-col-label">Week I — School · May 18–22</p>
-        <div class="schedule-row">
-            <div class="time-slot">May 18 (Mon)</div>
-            <div>
-                <div class="session-title">Arrival &amp; Registration</div>
-                <div class="session-desc">Welcome reception at IB Campus.</div>
-            </div>
+    <p class="week-col-label">Week I — School · May 18–22</p>
+    <div class="schedule-row">
+        <div class="time-slot">May 18 (Mon)</div>
+        <div>
+            <div class="session-title">Arrival &amp; Registration</div>
+            <div class="session-desc">Welcome reception at IB Campus.</div>
         </div>
-        <div class="schedule-row">
-            <div class="time-slot">Daily Structure</div>
-            <div>
-                <div class="session-title">3 Lectures</div>
-            </div>
+    </div>
+    <div class="schedule-row">
+        <div class="time-slot">Daily Structure</div>
+        <div>
+            <div class="session-title">3 Lectures per day</div>
         </div>
-        <div class="schedule-row">
-            <div class="time-slot">15:00 – 17:00</div>
-            <div>
-                <div class="session-title">Discussion Sessions</div>
-            </div>
+    </div>
+    <div class="schedule-row">
+        <div class="time-slot">15:00 – 17:00</div>
+        <div>
+            <div class="session-title">Discussion Sessions</div>
         </div>
-      </div>
-      <div class="schedule-week-col">
-        <p class="week-col-label">Week II — Workshop · May 25–27</p>
-        <div class="schedule-row">
-            <div class="time-slot">May 25 (Mon)</div>
-            <div>
-                <div class="session-title">Opening + G. Torroba</div>
-                <div class="session-desc">Welcoming &amp; invited research talks.</div>
-            </div>
-        </div>
-        <div class="schedule-row">
-            <div class="time-slot">Daily Structure</div>
-            <div>
-                <div class="session-title">Research Talks</div>
-            </div>
-        </div>
-        <div class="schedule-row">
-            <div class="time-slot">Afternoons</div>
-            <div>
-                <div class="session-title">Student Talks &amp; Poster Sessions</div>
-            </div>
-        </div>
-      </div>
+    </div>
+    <div class="tab-program-links">
+      <a class="program-link-btn" href="qft_school_2026_schedule.html">Full School Schedule</a>
+      <a class="program-link-btn" href="qft_school_2026_lectures.html">Lecture List</a>
     </div>
   </div>
 
   <div id="week2" class="schedule-container">
+    <p class="week-col-label">Week II — Workshop · May 25–27</p>
     <div class="schedule-row">
         <div class="time-slot">May 25 (Mon)</div>
         <div>
@@ -859,6 +822,9 @@
             <div class="session-title">Day 3</div>
             <div class="session-desc">G. Sierra · M. Lotito · I. Salazar &mdash; Student talks 2 + G. Silva</div>
         </div>
+    </div>
+    <div class="tab-program-links">
+      <a class="program-link-btn" href="qft_workshop_2026_schedule.html">Full Workshop Schedule</a>
     </div>
   </div>
 
