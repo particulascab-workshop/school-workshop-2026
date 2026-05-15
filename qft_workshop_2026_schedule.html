@@ -166,11 +166,25 @@ tr:last-child td { border-bottom: none; }
   .panel { box-shadow: none; border-radius: 0; }
   th { position: static; }
 }
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent);
+  font-size: .83rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 14px;
+  opacity: .85;
+  transition: opacity .15s;
+}
+.back-link:hover { opacity: 1; }
 </style>
 </head>
 <body>
   <main class="page">
     <header class="hero">
+      <a class="back-link" href="index.html#program">← Back to Program</a>
       <p class="kicker">Simons-Balseiro QFT Workshop 2026</p>
       <h1>Workshop schedule</h1>
       <p class="subtitle">May 25–27, 2026 · Instituto Balseiro, Bariloche</p>
