@@ -1,0 +1,14 @@
+# participants.json and speakers.json are generated at deploy time from Google Sheet secrets.
+# They are committed here as bootstrap data so the site works before the deploy workflow
+# is configured with secrets.
+#
+# Once the "Deploy to GitHub Pages" workflow is running with SHEET_CSV_URL /
+# SPEAKERS_CSV_URL secrets configured, you can remove these files from git tracking:
+#
+#   git rm --cached participants.json speakers.json
+#   echo "participants.json" >> .gitignore
+#   echo "speakers.json"    >> .gitignore
+#   git commit -m "chore: stop tracking generated data files"
+#
+# After that, all personal data lives only in Google Sheets and the Pages deploy
+# artifact — never in the git repository.

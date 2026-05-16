@@ -7,8 +7,11 @@ Conference website for the Simons-Balseiro School and Workshop on Advanced Aspec
 ## Structure
 
 ```
-index.html                            ← single-page site (no build step required)
-README.md
+index.html                            ← single-page site
+participants.json                     ← participant list (bootstrap; see Privacy below)
+speakers.json                         ← workshop speaker list (bootstrap; see Privacy below)
+sync_participants.py                  ← generates participants.json from Google Sheet
+sync_speakers.py                      ← generates speakers.json from Google Sheet
 Alexander-Zamolodchikov-700x467.jpeg  ← speaker photos
 fewster.jpg
 gomis.jpg
@@ -19,10 +22,54 @@ srednicki.jpg
 
 ## GitHub Pages deployment
 
+The site is deployed via **GitHub Actions** (`.github/workflows/deploy.yml`).
+
+### Initial setup
+
 1. Push this repo to GitHub.
 2. Go to **Settings → Pages**.
-3. Under *Source*, select **Deploy from a branch** → `main` → `/ (root)`.
-4. Save. Your site will be live at `https://<your-org>.github.io/school-workshop-2026/`.
+3. Under *Source*, select **GitHub Actions**.
+4. The workflow will run automatically on every push to `main` and deploy the site.
+
+> **Note:** If you are still on *Deploy from a branch*, change the source to **GitHub Actions**  
+> to take advantage of the privacy improvements described below.
+
+### Participant / speaker data (Google Sheet secrets)
+
+The deploy workflow optionally fetches fresh participant and speaker data from Google Sheets.
+Set the following repository secrets (**Settings → Secrets and variables → Actions**):
+
+| Secret | Used by |
+|--------|---------|
+| `SHEET_CSV_URL` | `sync_participants.py` — published CSV of the participants sheet |
+| `SPEAKERS_CSV_URL` | `sync_speakers.py` — published CSV of the speakers sheet |
+
+If the secrets are not set, the workflow falls back to the `participants.json` /
+`speakers.json` files already in the repository (bootstrap data).
+
+## Privacy
+
+Personal data (participant names and affiliations) is **not embedded in `index.html`**.
+Instead, `index.html` loads it at runtime from `participants.json` and `speakers.json`.
+
+The current `participants.json` / `speakers.json` files are **bootstrap copies** committed
+to the repository. To remove personal data from the git repository entirely:
+
+1. Ensure the deploy workflow runs successfully with the Google Sheet secrets configured
+   (so the live site still shows data after the files are removed from git).
+2. Stop tracking the files:
+   ```sh
+   git rm --cached participants.json speakers.json
+   printf "participants.json\nspeakers.json\n" >> .gitignore
+   git add .gitignore
+   git commit -m "chore: stop tracking generated data files"
+   git push
+   ```
+3. Optionally, rewrite git history to remove the bootstrap data from past commits  
+   (use `git filter-repo --path participants.json --path speakers.json --invert-paths`).
+
+After these steps, participant data will exist only in Google Sheets and in the
+GitHub Pages deployment artifact — never committed to the git repository.
 
 ## What to fill in before launch
 

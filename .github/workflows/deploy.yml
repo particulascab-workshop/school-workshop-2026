@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate participants list
+        env:
+          SHEET_CSV_URL: ${{ secrets.SHEET_CSV_URL }}
+        run: |
+          if [ -n "$SHEET_CSV_URL" ]; then
+            echo "Fetching participants from Google Sheet..."
+            python sync_participants.py
+          else
+            echo "SHEET_CSV_URL secret not configured — participants.json will not be regenerated."
+          fi
+
+      - name: Generate workshop speakers list
+        env:
+          SPEAKERS_CSV_URL: ${{ secrets.SPEAKERS_CSV_URL }}
+        run: |
+          if [ -n "$SPEAKERS_CSV_URL" ]; then
+            echo "Fetching speakers from Google Sheet..."
+            python sync_speakers.py
+          else
+            echo "SPEAKERS_CSV_URL secret not configured — speakers.json will not be regenerated."
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

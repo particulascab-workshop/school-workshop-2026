@@ -3,7 +3,8 @@
 sync_speakers.py
 ----------------
 Reads confirmed workshop speakers from a public Google Sheet (CSV export)
-and injects them into the `var speakers = [...]` array in index.html.
+and writes them to speakers.json (used by the GitHub Actions deploy
+workflow to serve the list without committing personal data to git).
 
 The Google Sheet must have two column headers: name, affiliation
 The sheet must be published as CSV via:
@@ -13,12 +14,12 @@ Usage (local):
   SPEAKERS_CSV_URL=<url> python sync_speakers.py
 
 In GitHub Actions, SPEAKERS_CSV_URL is read from repository secrets.
+Output: speakers.json (sorted alphabetically by last name)
 """
 
 import csv
 import json
 import os
-import re
 import sys
 
 import requests
@@ -26,12 +27,7 @@ import requests
 # ── Config ────────────────────────────────────────────────────────────────────
 
 SPEAKERS_CSV_URL = os.environ.get("SPEAKERS_CSV_URL", "")
-HTML_FILE = "index.html"
-
-# Matches the full `var speakers = [ ... ];` block in the JS
-SPEAKERS_RE = re.compile(
-    r"var speakers\s*=\s*\[[\s\S]*?\];",
-)
+JSON_FILE = "speakers.json"
 
 # ── Fetch & parse ─────────────────────────────────────────────────────────────
 
@@ -51,22 +47,14 @@ def fetch_speakers(url):
             speakers.append({"name": name, "affiliation": affiliation})
     return speakers
 
-# ── Inject into HTML ──────────────────────────────────────────────────────────
+# ── Write JSON ────────────────────────────────────────────────────────────────
 
-def inject_speakers(html_path, speakers):
-    with open(html_path, "r", encoding="utf-8") as f:
-        content = f.read()
+def write_speakers(json_path, speakers):
     # Sort alphabetically by last name
     speakers.sort(key=lambda p: p["name"].split()[-1].lower())
-    entries = ",\n      ".join(json.dumps(p, ensure_ascii=False) for p in speakers)
-    replacement = f"var speakers = [\n      {entries}\n      ];"
-    new_content, n = SPEAKERS_RE.subn(replacement, content)
-    if n == 0:
-        print("ERROR: Could not find `var speakers = [...]` in the HTML.", file=sys.stderr)
-        sys.exit(1)
-    with open(html_path, "w", encoding="utf-8") as f:
-        f.write(new_content)
-    print(f"OK: {len(speakers)} speakers written to {html_path}")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(speakers, f, ensure_ascii=False, indent=2)
+    print(f"OK: {len(speakers)} speakers written to {json_path}")
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
@@ -74,5 +62,5 @@ if __name__ == "__main__":
     print("Fetching speakers from Google Sheet...")
     people = fetch_speakers(SPEAKERS_CSV_URL)
     print(f"  Found {len(people)} entries.")
-    inject_speakers(HTML_FILE, people)
-    print("Done. Commit and push index.html to publish.")
+    write_speakers(JSON_FILE, people)
+    print("Done.")
